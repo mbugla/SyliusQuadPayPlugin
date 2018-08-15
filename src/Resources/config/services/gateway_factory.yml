@@ -1,0 +1,7 @@
+services:
+    bitbag_sylius_quadpay_plugin.gateway_factory.quadpay:
+        class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
+        arguments:
+            -  BitBag\SyliusQuadPayPlugin\QuadPayGatewayFactory
+        tags:
+            - { name: payum.gateway_factory_builder, factory: quadpay }

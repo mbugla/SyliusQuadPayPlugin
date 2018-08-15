@@ -1,0 +1,6 @@
+services:
+    bitbag_sylius_quadpay_plugin.form.type.quadpay_gateway_configuration:
+        class: BitBag\SyliusQuadPayPlugin\Form\Type\QuadPayGatewayConfigurationType
+        tags:
+            - { name: sylius.gateway_configuration_type, type: quadpay, label: bitbag_sylius_quadpay_plugin.ui.quadpay_gateway_label }
+            - { name: form.type }

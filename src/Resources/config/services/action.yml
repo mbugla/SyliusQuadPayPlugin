@@ -1,0 +1,26 @@
+services:
+    bitbag_sylius_quadpay_plugin.action.capture:
+        class: BitBag\SyliusQuadPayPlugin\Action\CaptureAction
+        public: true
+        tags:
+            - { name: payum.action, factory: quadpay, alias: payum.action.capture }
+
+    bitbag_sylius_quadpay_plugin.action.status:
+        class: BitBag\SyliusQuadPayPlugin\Action\StatusAction
+        public: true
+        tags:
+            - { name: payum.action, factory: quadpay, alias: payum.action.status }
+
+    bitbag_sylius_quadpay_plugin.action.convert_payment:
+        class: BitBag\SyliusQuadPayPlugin\Action\ConvertPaymentAction
+        public: true
+        arguments:
+            - "@sylius.payment_description_provider"
+        tags:
+            - { name: payum.action, factory: quadpay, alias: payum.action.convert_payment }
+
+    bitbag_sylius_quadpay_plugin.payum_action.refund:
+        class: BitBag\SyliusQuadPayPlugin\Action\RefundAction
+        public: true
+        tags:
+            - { name: payum.action, factory: quadpay, alias: payum.action.refund }
