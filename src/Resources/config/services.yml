@@ -2,3 +2,10 @@ imports:
     - { resource: "services/form.yml" }
     - { resource: "services/gateway_factory.yml" }
     - { resource: "services/action.yml" }
+
+services:
+    bitbag_sylius_quadpay_plugin.quadpay_api_client:
+        class: BitBag\SyliusQuadPayPlugin\Client\QuadPayApiClient
+        public: true
+        arguments:
+            - "@sylius.http_client"

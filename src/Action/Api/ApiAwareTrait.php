@@ -12,10 +12,20 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusQuadPayPlugin\Action\Api;
 
+use BitBag\SyliusQuadPayPlugin\Client\QuadPayApiClientInterface;
+use Payum\Core\Exception\UnsupportedApiException;
+
 trait ApiAwareTrait
 {
+    /** @var QuadPayApiClientInterface */
+    protected $quadpayApiClient;
+
     public function setApi($quadpayApiClient): void
     {
-       //todo
+        if (false === $quadpayApiClient instanceof QuadPayApiClientInterface) {
+            throw new UnsupportedApiException('Not supported.Expected an instance of ' . QuadPayApiClientInterface::class);
+        }
+
+        $this->quadpayApiClient = $quadpayApiClient;
     }
 }

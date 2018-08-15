@@ -13,15 +13,19 @@ declare(strict_types=1);
 namespace BitBag\SyliusQuadPayPlugin\Action;
 
 use BitBag\SyliusQuadPayPlugin\Action\Api\ApiAwareTrait;
+use BitBag\SyliusQuadPayPlugin\Client\QuadPayApiClientInterface;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\ApiAwareInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Exception\RequestNotSupportedException;
+use Payum\Core\Exception\RuntimeException;
 use Payum\Core\GatewayAwareInterface;
 use Payum\Core\GatewayAwareTrait;
+use Payum\Core\Reply\HttpRedirect;
 use Payum\Core\Request\Capture;
 use Payum\Core\Security\GenericTokenFactoryAwareInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
+use Payum\Core\Security\TokenInterface;
 
 final class CaptureAction implements ActionInterface, ApiAwareInterface, GenericTokenFactoryAwareInterface, GatewayAwareInterface
 {
@@ -47,7 +51,28 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
 
         $details = ArrayObject::ensureArrayObject($request->getModel());
 
-        //todo
+        if (true === isset($details['orderToken'])) {
+            return;
+        }
+
+        /** @var TokenInterface $token */
+        $token = $request->getToken();
+
+        if (null === $this->tokenFactory) {
+            throw new RuntimeException();
+        }
+
+        $details['merchant'] = [
+            'redirectConfirmUrl' => $token->getTargetUrl(),
+            'redirectCancelUrl' => $token->getTargetUrl() . '?&' . http_build_query(['status' => QuadPayApiClientInterface::STATUS_ABANDONED]),
+        ];
+
+        $order = $this->quadpayApiClient->createOrder($details->getArrayCopy());
+
+        $details['orderToken'] = $order['token'];
+        $details['orderStatus'] = QuadPayApiClientInterface::STATUS_CREATED;
+
+        throw new HttpRedirect($order['redirectUrl']);
     }
 
     public function supports($request): bool
