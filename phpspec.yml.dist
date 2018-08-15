@@ -1,0 +1,4 @@
+suites:
+    main:
+        namespace: BitBag\SyliusQuadPayPlugin
+        psr4_prefix: BitBag\SyliusQuadPayPlugin
