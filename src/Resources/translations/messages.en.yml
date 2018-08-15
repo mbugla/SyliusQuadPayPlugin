@@ -1,0 +1,8 @@
+bitbag_sylius_quadpay_plugin:
+    ui:
+        client_id: Client ID
+        client_secret: Client Secret
+        api_endpoint: API Endpoint
+        auth_token_endpoint: Auth Token Endpoint
+        api_audience: API Audience
+        quadpay_gateway_label: QuadPay
