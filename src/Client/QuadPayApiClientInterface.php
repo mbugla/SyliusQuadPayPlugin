@@ -27,7 +27,9 @@ interface QuadPayApiClientInterface
         string $apiAudience
     ): void;
 
-    public function getOrderUrl(?string $orderToken = null): string;
+    public function getOrderUrl(?string $orderId = null, ?string $orderToken = null): string;
+
+    public function getRefundUrl(string $orderId): string;
 
     public function getOauthTokenUrl(): string;
 
@@ -35,5 +37,14 @@ interface QuadPayApiClientInterface
 
     public function createOrder(array $data): array;
 
-    public function getOrder(string $orderToken): array;
+    public function getOrderByToken(string $orderToken): array;
+
+    public function getOrderById(string $orderId): array;
+
+    public function refund(
+        float $amount,
+        string $merchantRefundReference,
+        string $orderToken,
+        ?string $orderId = null
+    ): array;
 }

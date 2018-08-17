@@ -72,6 +72,10 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
         $details['orderToken'] = $order['token'];
         $details['orderStatus'] = QuadPayApiClientInterface::STATUS_CREATED;
 
+        if (isset($order['orderId'])) {
+            $details['orderId'] = $order['orderId'];
+        }
+
         throw new HttpRedirect($order['redirectUrl']);
     }
 

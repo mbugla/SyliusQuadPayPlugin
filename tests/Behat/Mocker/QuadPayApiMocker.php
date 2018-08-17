@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Tests\BitBag\SyliusQuadPayPlugin\Behat\Mocker;
 
 use BitBag\SyliusQuadPayPlugin\Client\QuadPayApiClientInterface;
+use BitBag\SyliusQuadPayPlugin\PaymentProcessing\PaymentProcessorInterface;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use Sylius\Behat\Service\Mocker\MockerInterface;
@@ -55,9 +56,10 @@ final class QuadPayApiMocker
         ;
 
         $mockService
-            ->shouldReceive('getOrder')
+            ->shouldReceive('getOrderByToken', 'getOrderById')
             ->andReturn([
                 'orderStatus' => QuadPayApiClientInterface::STATUS_APPROVED,
+                'orderId' => 'test',
             ])
         ;
 
@@ -75,7 +77,7 @@ final class QuadPayApiMocker
         ;
 
         $mockService
-            ->shouldReceive('getOrder')
+            ->shouldReceive('getOrderByToken')
             ->andThrow(new ClientException('', new Request('GET', ''), new \GuzzleHttp\Psr7\Response(404)))
         ;
 
@@ -84,5 +86,23 @@ final class QuadPayApiMocker
         $action();
 
         $this->mocker->unmockService('bitbag_sylius_quadpay_plugin.quadpay_api_client');
+    }
+
+    public function mockApiRefundedPayment(callable $action): void
+    {
+        $mockService = $this->mocker
+            ->mockService('bitbag_sylius_quadpay_plugin.payment_processing.refund', PaymentProcessorInterface::class)
+        ;
+
+        $mockService
+            ->shouldReceive('refund')
+            ->andReturn([])
+        ;
+
+        $mockService->shouldReceive('process');
+
+        $action();
+
+        $this->mocker->unmockService('bitbag_sylius_quadpay_plugin.payment_processing.refund');
     }
 }

@@ -9,3 +9,10 @@ services:
         public: true
         arguments:
             - "@sylius.http_client"
+
+    bitbag_sylius_quadpay_plugin.payment_processing.refund:
+        class: BitBag\SyliusQuadPayPlugin\PaymentProcessing\RefundPaymentProcessor
+        public: true
+        arguments:
+            - "@session"
+            - "@bitbag_sylius_quadpay_plugin.quadpay_api_client"

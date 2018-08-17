@@ -18,9 +18,3 @@ services:
             - "@sylius.payment_description_provider"
         tags:
             - { name: payum.action, factory: quadpay, alias: payum.action.convert_payment }
-
-    bitbag_sylius_quadpay_plugin.payum_action.refund:
-        class: BitBag\SyliusQuadPayPlugin\Action\RefundAction
-        public: true
-        tags:
-            - { name: payum.action, factory: quadpay, alias: payum.action.refund }

@@ -9,3 +9,11 @@ services:
             - "@__symfony__.sylius.manager.payment_method"
         tags:
             - { name: fob.context_service }
+
+    bitbag_sylius_quadpay_plugin.context.setup.order:
+        class: Tests\BitBag\SyliusQuadPayPlugin\Behat\Context\Setup\OrderContext
+        arguments:
+            - "@__symfony__.doctrine.orm.default_entity_manager"
+            - "@__symfony__.sm.factory"
+        tags:
+            - { name: fob.context_service }

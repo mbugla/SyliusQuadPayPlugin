@@ -97,8 +97,8 @@ final class ConvertPaymentAction implements ActionInterface, GatewayAwareInterfa
             'addressLine1' => $billingAddress->getStreet(),
             'addressLine2' => '',
             'city' => $billingAddress->getCity(),
-            'postcode' => $billingAddress->getPostcode(),
-            'state' => $billingAddress->getProvinceCode(),
+            'postcode' => $billingAddress->getPostcode() ?? '',
+            'state' => $billingAddress->getProvinceCode() ?? '',
         ];
     }
 
@@ -110,8 +110,8 @@ final class ConvertPaymentAction implements ActionInterface, GatewayAwareInterfa
             'addressLine1' => $shippingAddress->getStreet(),
             'addressLine2' => '',
             'city' => $shippingAddress->getCity(),
-            'postcode' => $shippingAddress->getPostcode(),
-            'state' => $shippingAddress->getProvinceCode(),
+            'postcode' => $shippingAddress->getPostcode() ?? '',
+            'state' => $shippingAddress->getProvinceCode() ?? '',
         ];
     }
 

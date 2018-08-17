@@ -53,8 +53,13 @@ final class StatusAction implements ActionInterface, GatewayAwareInterface, ApiA
         $this->gateway->execute($httpRequest = new GetHttpRequest());
 
         try {
-            $order = $this->quadpayApiClient->getOrder($details['orderToken']);
+            if (isset($details['orderId'])) {
+                $order = $this->quadpayApiClient->getOrderById($details['orderId']);
+            } else {
+                $order = $this->quadpayApiClient->getOrderByToken($details['orderToken']);
+            }
 
+            $details['orderId'] = $order['orderId'];
             $details['orderStatus'] = strtolower($order['orderStatus']);
         } catch (ClientException $clientException) {
             if (

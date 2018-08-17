@@ -53,7 +53,7 @@ class QuadPayApiClient implements QuadPayApiClientInterface
         $this->apiAudience = $apiAudience;
     }
 
-    public function getOrderUrl(?string $orderToken = null): string
+    public function getOrderUrl(?string $orderId = null, ?string $orderToken = null): string
     {
         $url = sprintf('https://%s/order', parse_url($this->apiEndpoint)['host']);
 
@@ -61,7 +61,16 @@ class QuadPayApiClient implements QuadPayApiClientInterface
             return sprintf('%s?token=%s', $url, $orderToken);
         }
 
+        if (null !== $orderId) {
+            return sprintf('%s/%s', $url, $orderId);
+        }
+
         return $url;
+    }
+
+    public function getRefundUrl(string $orderId): string
+    {
+        return sprintf('https://%s/order/%s/refund', parse_url($this->apiEndpoint)['host'], $orderId);
     }
 
     public function getOauthTokenUrl(): string
@@ -84,9 +93,32 @@ class QuadPayApiClient implements QuadPayApiClientInterface
         return $this->request('POST', $this->getOrderUrl(), $data, $this->createAccessToken()['access_token']);
     }
 
-    public function getOrder(string $orderToken): array
+    public function getOrderByToken(string $orderToken): array
     {
-        return $this->request('GET', $this->getOrderUrl($orderToken), [], $this->createAccessToken()['access_token']);
+        return $this->request('GET', $this->getOrderUrl(null, $orderToken), [], $this->createAccessToken()['access_token']);
+    }
+
+    public function getOrderById(string $orderId): array
+    {
+        return $this->request('GET', $this->getOrderUrl($orderId), [], $this->createAccessToken()['access_token']);
+    }
+
+    public function refund(
+        float $amount,
+        string $merchantRefundReference,
+        string $orderToken,
+        ?string $orderId = null
+    ): array {
+        if (null === $orderId) {
+            $orderId = $this->getOrderByToken($orderToken)['orderId'];
+        }
+
+        $data = [
+            'amount' => $amount,
+            'merchantRefundReference' => $merchantRefundReference,
+        ];
+
+        return $this->request('POST', $this->getRefundUrl($orderId), $data, $this->createAccessToken()['access_token']);
     }
 
     protected function getHeaders(?string $accessToken = null): array
