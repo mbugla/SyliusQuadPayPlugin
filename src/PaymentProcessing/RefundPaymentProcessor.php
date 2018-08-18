@@ -51,7 +51,7 @@ final class RefundPaymentProcessor implements PaymentProcessorInterface
 
         $details = $payment->getDetails();
 
-        if (false === isset($payment->getDetails()['orderToken'])) {
+        if (false === isset($details['orderToken'])) {
             $this->session->getFlashBag()->add("info", "The payment refund was made only locally.");
 
             return;

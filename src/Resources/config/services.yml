@@ -16,3 +16,23 @@ services:
         arguments:
             - "@session"
             - "@bitbag_sylius_quadpay_plugin.quadpay_api_client"
+
+    bitbag_sylius_quadpay_plugin.rapository.payment:
+        class: BitBag\SyliusQuadPayPlugin\Repository\PaymentRepository
+        parent: "sylius.repository.payment"
+
+    bitbag_sylius_quadpay_plugin.resolver.payment_state:
+        class: BitBag\SyliusQuadPayPlugin\Resolver\PaymentStateResolver
+        arguments:
+            - "@sm.factory"
+            - "@bitbag_sylius_quadpay_plugin.quadpay_api_client"
+            - "@sylius.manager.payment"
+
+    bitbag_sylius_quadpay_plugin.command.payment_state:
+        class: BitBag\SyliusQuadPayPlugin\Command\UpdatePaymentStateCommand
+        arguments:
+            - "@bitbag_sylius_quadpay_plugin.rapository.payment"
+            - "@bitbag_sylius_quadpay_plugin.resolver.payment_state"
+            - "@monolog.logger"
+        tags:
+            - { name: console.command }
