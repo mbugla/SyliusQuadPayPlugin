@@ -18,6 +18,8 @@ Feature: Adding a new QuadPay payment method
         And I fill the API Endpoint with "https://quadpay-dev.auth0.com/oauth/token"
         And I fill the Auth Token Endpoint with "https://auth-dev.quadpay.com"
         And I fill the API Audience with "https://ci.quadpay.com"
+        And I fill the Minimum Amount with "100.00"
+        And I fill the Maximum Amount with "950.00"
         And make it available in channel "Web-USD"
         And I add it
         Then I should be notified that it has been successfully created

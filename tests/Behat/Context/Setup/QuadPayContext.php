@@ -71,6 +71,8 @@ final class QuadPayContext implements Context
             'authTokenEndpoint' => 'https://api-ci.quadpay.com/',
             'apiAudience' => 'https://api-ci.quadpay.com/',
             'payum.http_client' => '@bitbag_sylius_quadpay_plugin.quadpay_api_client',
+            'minimumAmount' => 2000,
+            'maximumAmount' => 20000,
         ]);
 
         $this->paymentMethodManager->flush();

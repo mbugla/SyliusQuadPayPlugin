@@ -1,0 +1,5 @@
+Sylius\Component\Core\Model\PaymentMethod:
+    constraints:
+        - BitBag\SyliusQuadPayPlugin\Validator\Constraints\Currency:
+            groups: ['sylius']
+            message: 'bitbag_sylius_quadpay_plugin.payment_method.channel.required_currency'

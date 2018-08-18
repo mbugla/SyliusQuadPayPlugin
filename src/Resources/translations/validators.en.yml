@@ -1,11 +1,22 @@
 bitbag_sylius_quadpay_plugin:
-    client_id:
-        not_blank: Client ID cannot be blank.
-    client_secret:
-        not_blank: Client Secret cannot be blank.
-    api_endpoint:
-        not_blank: API Endpoint cannot be blank.
-    auth_token_endpoint:
-        not_blank: Auth Token Endpoint cannot be blank.
-    api_audience:
-        not_blank: API Audience cannot be blank.
+    payment_method:
+        client_id:
+            not_blank: Client ID cannot be blank.
+        client_secret:
+            not_blank: Client Secret cannot be blank.
+        api_endpoint:
+            not_blank: API Endpoint cannot be blank.
+        auth_token_endpoint:
+            not_blank: Auth Token Endpoint cannot be blank.
+        api_audience:
+            not_blank: API Audience cannot be blank.
+        minimum_amount:
+            not_blank: Minimum amount cannot be blank.
+        maximum_amount:
+            not_blank: Maximum amount cannot be blank.
+        channel:
+            required_currency: The base currency of the channel must be {{ currencies }}.
+    payment:
+        method:
+            minimum_amount: Amount order must be more than ${{ minimumAmount }} for payments with QuadPay.
+            maximum_amount: Amount order must not exceed ${{ maximumAmount }} for payments with QuadPay.

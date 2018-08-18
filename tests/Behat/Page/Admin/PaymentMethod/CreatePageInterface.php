@@ -26,5 +26,9 @@ interface CreatePageInterface extends BaseCreatePageInterface
 
     public function setApiAudience(string $apiAudience): void;
 
+    public function setMinimumAmount(string $minimumAmount): void;
+
+    public function setMaximumAmount(string $maximumAmount): void;
+
     public function containsErrorWithMessage(string $message, bool $strict = true): bool;
 }

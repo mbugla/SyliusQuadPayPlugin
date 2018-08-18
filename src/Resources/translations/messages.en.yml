@@ -6,3 +6,5 @@ bitbag_sylius_quadpay_plugin:
         auth_token_endpoint: Auth Token Endpoint
         api_audience: API Audience
         quadpay_gateway_label: QuadPay
+        minimum_amount: Minimum amount
+        maximum_amount: Maximum amount

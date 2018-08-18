@@ -1,6 +1,7 @@
 parameters:
     locale: en_US
     secret: "Heron is the best animal in the world!"
+    sylius.form.type.checkout_select_payment.validation_groups: ['sylius', 'checkout_select_payment']
 
 imports:
     - { resource: "@SyliusCoreBundle/Resources/config/app/config.yml" }

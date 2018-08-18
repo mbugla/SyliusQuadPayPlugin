@@ -1,0 +1,10 @@
+services:
+    bitbag_sylius_quadpay_plugin.validator.currency:
+        class: BitBag\SyliusQuadPayPlugin\Validator\Constraints\CurrencyValidator
+        tags:
+            - { name: validator.constraint_validator, alias: bitbag_sylius_quadpay_plugin_currency }
+
+    bitbag_sylius_quadpay_plugin.validator.order_amount:
+        class: BitBag\SyliusQuadPayPlugin\Validator\Constraints\OrderAmountValidator
+        tags:
+            - { name: validator.constraint_validator, alias: bitbag_sylius_quadpay_plugin_order_amount }

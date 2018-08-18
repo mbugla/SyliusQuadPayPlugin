@@ -1,0 +1,6 @@
+Sylius\Component\Core\Model\Payment:
+    constraints:
+        - BitBag\SyliusQuadPayPlugin\Validator\Constraints\OrderAmount:
+            groups: ['checkout_select_payment']
+            minimumAmountMessage: 'bitbag_sylius_quadpay_plugin.payment.method.minimum_amount'
+            maximumAmountMessage: 'bitbag_sylius_quadpay_plugin.payment.method.maximum_amount'

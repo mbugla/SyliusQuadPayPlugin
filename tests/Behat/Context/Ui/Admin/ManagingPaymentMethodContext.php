@@ -75,6 +75,22 @@ final class ManagingPaymentMethodContext implements Context
     }
 
     /**
+     * @When I fill the Minimum Amount with :minimumAmount
+     */
+    public function iFillTheMinimumAmountWith(string $minimumAmount): void
+    {
+        $this->createPage->setMinimumAmount($minimumAmount);
+    }
+
+    /**
+     * @When I fill the Maximum Amount with :maximumAmount
+     */
+    public function iFillTheMaximumAmountWith(string $maximumAmount)
+    {
+        $this->createPage->setMaximumAmount($maximumAmount);
+    }
+
+    /**
      * @Then I should be notified that :fields fields cannot be blank
      */
     public function iShouldBeNotifiedThatCannotBeBlank(string $fields): void

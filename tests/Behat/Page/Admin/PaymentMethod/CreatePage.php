@@ -42,6 +42,16 @@ final class CreatePage extends BaseCreatePage implements CreatePageInterface
         $this->getDocument()->fillField('API Audience', $apiAudience);
     }
 
+    public function setMinimumAmount(string $minimumAmount): void
+    {
+        $this->getDocument()->fillField('Minimum amount', $minimumAmount);
+    }
+
+    public function setMaximumAmount(string $maximumAmount): void
+    {
+        $this->getDocument()->fillField('Maximum amount', $maximumAmount);
+    }
+
     public function containsErrorWithMessage(string $message, bool $strict = true): bool
     {
         $validationMessageElements = $this->getDocument()->findAll('css', '.sylius-validation-error');
