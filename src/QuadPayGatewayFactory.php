@@ -26,7 +26,7 @@ final class QuadPayGatewayFactory extends GatewayFactory
         $config->defaults([
             'payum.factory_name' => self::FACTORY_NAME,
             'payum.factory_title' => 'QuadPay',
-            'payum.http_client' => '@bitbag_sylius_mollie_plugin.mollie_api_client',
+            'payum.http_client' => '@bitbag_sylius_quadpay_plugin.quadpay_api_client',
         ]);
 
         if (false === (bool) $config['payum.api']) {

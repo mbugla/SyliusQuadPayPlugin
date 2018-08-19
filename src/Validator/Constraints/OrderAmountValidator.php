@@ -37,14 +37,12 @@ final class OrderAmountValidator extends ConstraintValidator
         $paymentMethod = $payment->getMethod();
 
         if (null === $paymentMethod) {
-
             return;
         }
 
         $gatewayConfig = $paymentMethod->getGatewayConfig();
 
         if (null === $gatewayConfig || ($gatewayConfig->getFactoryName() !== QuadPayGatewayFactory::FACTORY_NAME)) {
-
             return;
         }
 

@@ -52,7 +52,7 @@ final class RefundPaymentProcessor implements PaymentProcessorInterface
         $details = $payment->getDetails();
 
         if (false === isset($details['orderToken'])) {
-            $this->session->getFlashBag()->add("info", "The payment refund was made only locally.");
+            $this->session->getFlashBag()->add('info', 'The payment refund was made only locally.');
 
             return;
         }
@@ -89,7 +89,7 @@ final class RefundPaymentProcessor implements PaymentProcessorInterface
                 $message = (string) $clientException->getResponse()->getBody();
             }
 
-            $this->session->getFlashBag()->add("error", $message);
+            $this->session->getFlashBag()->add('error', $message);
 
             throw new UpdateHandlingException();
         }

@@ -39,14 +39,14 @@ final class OrderContext implements Context
     /**
      * @Given /^(this order) with QuadPay payment is already paid$/
      */
-    public function thisOrderWithQuadpayPaymentIsAlreadyPaid(OrderInterface $order): void
+    public function thisOrderWithQuadPayPaymentIsAlreadyPaid(OrderInterface $order): void
     {
-        $this->applyMolliePaymentTransitionOnOrder($order, PaymentTransitions::TRANSITION_COMPLETE);
+        $this->applyQuadPayPaymentTransitionOnOrder($order, PaymentTransitions::TRANSITION_COMPLETE);
 
         $this->objectManager->flush();
     }
 
-    private function applyMolliePaymentTransitionOnOrder(OrderInterface $order, $transition): void
+    private function applyQuadPayPaymentTransitionOnOrder(OrderInterface $order, $transition): void
     {
         foreach ($order->getPayments() as $payment) {
             /** @var PaymentMethodInterface $paymentMethod */

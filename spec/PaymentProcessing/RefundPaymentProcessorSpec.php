@@ -63,11 +63,11 @@ final class RefundPaymentProcessorSpec extends ObjectBehavior
         /** @var string|array $argumentAny */
         $argumentAny = Argument::any();
         $quadPayApiClient->setConfig(
-            "test",
-            "test",
-            "https://api-ci.quadpay.com/",
-            "https://api-ci.quadpay.com/",
-            "https://api-ci.quadpay.com/"
+            'test',
+            'test',
+            'https://api-ci.quadpay.com/',
+            'https://api-ci.quadpay.com/',
+            'https://api-ci.quadpay.com/'
         );
         $quadPayApiClient->refund(2222.22, $argumentAny, 'test', null)->willReturn(['refundId' => 'test']);
 

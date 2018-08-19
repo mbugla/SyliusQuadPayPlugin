@@ -15,8 +15,8 @@ namespace spec\BitBag\SyliusQuadPayPlugin\Client;
 use BitBag\SyliusQuadPayPlugin\Client\QuadPayApiClient;
 use BitBag\SyliusQuadPayPlugin\Client\QuadPayApiClientInterface;
 use GuzzleHttp\ClientInterface;
-use Psr\Http\Message\ResponseInterface;
 use PhpSpec\ObjectBehavior;
+use Psr\Http\Message\ResponseInterface;
 
 final class QuadPayApiClientSpec extends ObjectBehavior
 {
@@ -62,11 +62,11 @@ final class QuadPayApiClientSpec extends ObjectBehavior
                     'client_id' => 'test',
                     'client_secret' => 'test',
                     'audience' => 'https://api-ci.quadpay.com/',
-                    'grant_type' => 'client_credentials'
+                    'grant_type' => 'client_credentials',
                 ],
                 'headers' => [
-                    'Content-Type' => 'application/json'
-                ]
+                    'Content-Type' => 'application/json',
+                ],
             ]
         )->willReturn($tokenResponse);
 
@@ -75,12 +75,12 @@ final class QuadPayApiClientSpec extends ObjectBehavior
             'https://api-ci.quadpay.com/order',
             [
                 'json' => [
-                    'test' => 'test'
+                    'test' => 'test',
                 ],
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciO'
-                ]
+                    'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciO',
+                ],
             ]
         )->willReturn($orderResponse);
 
@@ -104,11 +104,11 @@ final class QuadPayApiClientSpec extends ObjectBehavior
                     'client_id' => 'test',
                     'client_secret' => 'test',
                     'audience' => 'https://api-ci.quadpay.com/',
-                    'grant_type' => 'client_credentials'
+                    'grant_type' => 'client_credentials',
                 ],
                 'headers' => [
-                    'Content-Type' => 'application/json'
-                ]
+                    'Content-Type' => 'application/json',
+                ],
             ]
         )->willReturn($tokenResponse);
 
@@ -121,8 +121,8 @@ final class QuadPayApiClientSpec extends ObjectBehavior
                 'json' => [],
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciO'
-                ]
+                    'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciO',
+                ],
             ]
         )->willReturn($orderResponse);
 
@@ -146,11 +146,11 @@ final class QuadPayApiClientSpec extends ObjectBehavior
                     'client_id' => 'test',
                     'client_secret' => 'test',
                     'audience' => 'https://api-ci.quadpay.com/',
-                    'grant_type' => 'client_credentials'
+                    'grant_type' => 'client_credentials',
                 ],
                 'headers' => [
-                    'Content-Type' => 'application/json'
-                ]
+                    'Content-Type' => 'application/json',
+                ],
             ]
         )->willReturn($tokenResponse);
 
@@ -163,8 +163,8 @@ final class QuadPayApiClientSpec extends ObjectBehavior
                 'json' => [],
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciO'
-                ]
+                    'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciO',
+                ],
             ]
         )->willReturn($orderResponse);
 
@@ -188,15 +188,15 @@ final class QuadPayApiClientSpec extends ObjectBehavior
             'POST',
             'https://api-ci.quadpay.com/oauth/token',
             [
-                "json" => [
-                    "client_id" => "test",
-                    "client_secret" => "test",
-                    "audience" => "https://api-ci.quadpay.com/",
-                    "grant_type" => "client_credentials"
+                'json' => [
+                    'client_id' => 'test',
+                    'client_secret' => 'test',
+                    'audience' => 'https://api-ci.quadpay.com/',
+                    'grant_type' => 'client_credentials',
                 ],
-                "headers" => [
-                    "Content-Type" => "application/json"
-                ]
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
             ]
         )->willReturn($tokenResponse);
 
@@ -206,11 +206,11 @@ final class QuadPayApiClientSpec extends ObjectBehavior
             'GET',
             'https://api-ci.quadpay.com/order?token=gf74yr4iuyti4hjtikht',
             [
-                "json" => [],
-                "headers" => [
-                    "Content-Type" => "application/json",
-                    "Authorization" => "Bearer eyJ0eXAiOiJKV1QiLCJhbGciO"
-                ]
+                'json' => [],
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciO',
+                ],
             ]
         )->willReturn($orderResponse);
 
@@ -220,14 +220,14 @@ final class QuadPayApiClientSpec extends ObjectBehavior
             'POST',
             'https://api-ci.quadpay.com/order/h4897t4htye8iype/refund',
             [
-                "json" => [
-                    "amount" => 20.77,
-                    "merchantRefundReference" => "hfeirjtlegjktejio"
+                'json' => [
+                    'amount' => 20.77,
+                    'merchantRefundReference' => 'hfeirjtlegjktejio',
                 ],
-                "headers" => [
-                    "Content-Type" => "application/json",
-                    "Authorization" => "Bearer eyJ0eXAiOiJKV1QiLCJhbGciO"
-                ]
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciO',
+                ],
             ]
         )->willReturn($refundResponse);
 

@@ -12,11 +12,11 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusQuadPayPlugin\Client;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 
 class QuadPayApiClient implements QuadPayApiClientInterface
 {
-    /** @var Client */
+    /** @var ClientInterface */
     protected $apiClient;
 
     /** @var string */
@@ -34,7 +34,7 @@ class QuadPayApiClient implements QuadPayApiClientInterface
     /** @var string */
     protected $apiAudience;
 
-    public function __construct(Client $client)
+    public function __construct(ClientInterface $client)
     {
         $this->apiClient = $client;
     }
@@ -123,7 +123,7 @@ class QuadPayApiClient implements QuadPayApiClientInterface
 
     protected function getHeaders(?string $accessToken = null): array
     {
-        $headers =  [
+        $headers = [
             'Content-Type' => 'application/json',
         ];
 
@@ -143,6 +143,6 @@ class QuadPayApiClient implements QuadPayApiClientInterface
 
         $result = $this->apiClient->request($method, $url, $options);
 
-        return \GuzzleHttp\json_decode((string)$result->getBody(), true);
+        return \GuzzleHttp\json_decode((string) $result->getBody(), true);
     }
 }

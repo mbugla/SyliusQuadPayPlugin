@@ -37,7 +37,7 @@ final class RefundContext implements Context
     /**
      * @When /^I mark (this order)'s QuadPay payment as refunded$/
      */
-    public function iMarkThisOrdersQuadpayPaymentAsRefunded(OrderInterface $order): void
+    public function iMarkThisOrdersQuadPayPaymentAsRefunded(OrderInterface $order): void
     {
         $this->quadPayApiMocker->mockApiRefundedPayment(function () use ($order) {
             $this->managingOrdersContext->iMarkThisOrderSPaymentAsRefunded($order);

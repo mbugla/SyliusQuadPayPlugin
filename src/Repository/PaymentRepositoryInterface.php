@@ -16,5 +16,5 @@ use Sylius\Component\Core\Repository\PaymentRepositoryInterface as BasePaymentRe
 
 interface PaymentRepositoryInterface extends BasePaymentRepositoryInterface
 {
-    public function  findAllActiveByGatewayFactoryName(string $gatewayFactoryName): array;
+    public function findAllActiveByGatewayFactoryName(string $gatewayFactoryName): array;
 }

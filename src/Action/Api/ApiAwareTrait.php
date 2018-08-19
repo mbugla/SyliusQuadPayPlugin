@@ -18,14 +18,14 @@ use Payum\Core\Exception\UnsupportedApiException;
 trait ApiAwareTrait
 {
     /** @var QuadPayApiClientInterface */
-    protected $quadpayApiClient;
+    protected $quadPayApiClient;
 
-    public function setApi($quadpayApiClient): void
+    public function setApi($quadPayApiClient): void
     {
-        if (false === $quadpayApiClient instanceof QuadPayApiClientInterface) {
+        if (false === $quadPayApiClient instanceof QuadPayApiClientInterface) {
             throw new UnsupportedApiException('Not supported.Expected an instance of ' . QuadPayApiClientInterface::class);
         }
 
-        $this->quadpayApiClient = $quadpayApiClient;
+        $this->quadPayApiClient = $quadPayApiClient;
     }
 }

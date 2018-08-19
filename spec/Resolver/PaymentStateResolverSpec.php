@@ -68,17 +68,17 @@ final class PaymentStateResolverSpec extends ObjectBehavior
             'orderToken' => 'test',
         ]);
         $quadPayApiClient->setConfig(
-            "test",
-            "test",
-            "https://api-ci.quadpay.com/",
-            "https://api-ci.quadpay.com/",
-            "https://api-ci.quadpay.com/"
+            'test',
+            'test',
+            'https://api-ci.quadpay.com/',
+            'https://api-ci.quadpay.com/',
+            'https://api-ci.quadpay.com/'
         );
         $quadPayApiClient->getOrderByToken('test')->willReturn(['orderStatus' => QuadPayApiClientInterface::STATUS_APPROVED]);
         $stateMachineFactory->get($payment, PaymentTransitions::GRAPH)->willReturn($stateMachine);
         $stateMachine->can(PaymentTransitions::TRANSITION_COMPLETE)->willReturn(true);
 
-        $payment->setDetails(["orderToken" => "test", "orderStatus" => "approved"])->shouldBeCalled();
+        $payment->setDetails(['orderToken' => 'test', 'orderStatus' => 'approved'])->shouldBeCalled();
         $stateMachine->apply(PaymentTransitions::TRANSITION_COMPLETE)->shouldBeCalled();
 
         $this->resolve($payment);

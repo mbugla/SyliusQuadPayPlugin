@@ -54,9 +54,9 @@ final class StatusAction implements ActionInterface, GatewayAwareInterface, ApiA
 
         try {
             if (isset($details['orderId'])) {
-                $order = $this->quadpayApiClient->getOrderById($details['orderId']);
+                $order = $this->quadPayApiClient->getOrderById($details['orderId']);
             } else {
-                $order = $this->quadpayApiClient->getOrderByToken($details['orderToken']);
+                $order = $this->quadPayApiClient->getOrderByToken($details['orderToken']);
             }
 
             $details['orderId'] = $order['orderId'];
@@ -78,18 +78,23 @@ final class StatusAction implements ActionInterface, GatewayAwareInterface, ApiA
         switch ($details['orderStatus']) {
             case QuadPayApiClientInterface::STATUS_CREATED:
                 $request->markPending();
+
                 break;
             case QuadPayApiClientInterface::STATUS_ABANDONED:
                 $request->markCanceled();
+
                 break;
             case QuadPayApiClientInterface::STATUS_DECLINED:
                 $request->markFailed();
+
                 break;
             case QuadPayApiClientInterface::STATUS_APPROVED:
                 $request->markCaptured();
+
                 break;
             default:
                 $request->markUnknown();
+
                 break;
         }
     }

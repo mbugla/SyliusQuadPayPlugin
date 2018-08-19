@@ -50,14 +50,12 @@ final class PaymentStateResolver implements PaymentStateResolverInterface
         $paymentMethod = $payment->getMethod();
 
         if (QuadPayGatewayFactory::FACTORY_NAME !== $paymentMethod->getGatewayConfig()->getFactoryName()) {
-
             return;
         }
 
         $details = $payment->getDetails();
 
         if (false === isset($details['orderToken']) && false === isset($details['orderId'])) {
-
             return;
         }
 
@@ -96,15 +94,19 @@ final class PaymentStateResolver implements PaymentStateResolverInterface
         switch ($details['orderStatus']) {
             case QuadPayApiClientInterface::STATUS_CREATED:
                 $this->applyProcess($paymentStateMachine);
+
                 break;
             case QuadPayApiClientInterface::STATUS_ABANDONED:
                 $this->applyCancel($paymentStateMachine);
+
                 break;
             case QuadPayApiClientInterface::STATUS_APPROVED:
                 $this->applyComplete($paymentStateMachine);
+
                 break;
             default:
                 $this->applyFail($paymentStateMachine);
+
                 break;
         }
 

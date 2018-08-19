@@ -78,7 +78,7 @@ final class UpdatePaymentStateCommand extends Command
             }
 
             if ($oldState !== $payment->getState()) {
-                $updatesCount++;
+                ++$updatesCount;
 
                 $output->writeln(sprintf('Update payment state for order #%s: %s -> %s', $orderNumber, $oldState, $payment->getState()));
             }

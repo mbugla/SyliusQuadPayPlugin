@@ -53,8 +53,7 @@ final class ConvertPaymentActionSpec extends ObjectBehavior
         AddressInterface $address,
         OrderItemInterface $orderItem,
         ProductInterface $product
-    ): void
-    {
+    ): void {
         $this->setGateway($gateway);
         $customer->getFullName()->willReturn('Jan Kowalski');
         $customer->getEmail()->willReturn('shop@example.com');
@@ -89,40 +88,40 @@ final class ConvertPaymentActionSpec extends ObjectBehavior
         $request->getTo()->willReturn('array');
 
         $request->setResult([
-            "amount" => "445535.00",
-            "consumer" => [
-                "phoneNumber" => "353464674",
-                "givenNames" => "test",
-                "surname" => "test",
-                "email" => "shop@example.com"
+            'amount' => '445535.00',
+            'consumer' => [
+                'phoneNumber' => '353464674',
+                'givenNames' => 'test',
+                'surname' => 'test',
+                'email' => 'shop@example.com',
             ],
-            "billing" => [
-                "addressLine1" => "test",
-                "addressLine2" => "",
-                "city" => "test",
-                "postcode" => "353664",
-                "state" => ""
+            'billing' => [
+                'addressLine1' => 'test',
+                'addressLine2' => '',
+                'city' => 'test',
+                'postcode' => '353664',
+                'state' => '',
             ],
-            "shipping" => [
-                "addressLine1" => "test",
-                "addressLine2" => "",
-                "city" => "test",
-                "postcode" => "353664",
-                "state" => ""
+            'shipping' => [
+                'addressLine1' => 'test',
+                'addressLine2' => '',
+                'city' => 'test',
+                'postcode' => '353664',
+                'state' => '',
             ],
-            "description" => "description",
-            "items" => [
+            'description' => 'description',
+            'items' => [
                 [
-                    "description" => "description",
-                    "name" => "name",
-                    "sku" => "code",
-                    "quantity" => 1,
-                    "price" => "20.00"
-                ]
+                    'description' => 'description',
+                    'name' => 'name',
+                    'sku' => 'code',
+                    'quantity' => 1,
+                    'price' => '20.00',
+                ],
             ],
-            "merchantReference" => "0000001",
-            "taxAmount" => "100.00",
-            "shippingAmount" => "100.00"
+            'merchantReference' => '0000001',
+            'taxAmount' => '100.00',
+            'shippingAmount' => '100.00',
             ]
         )->shouldBeCalled();
 

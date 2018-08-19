@@ -18,27 +18,16 @@ use Payum\Core\Action\ActionInterface;
 use Payum\Core\ApiAwareInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Exception\RequestNotSupportedException;
-use Payum\Core\Exception\RuntimeException;
 use Payum\Core\GatewayAwareInterface;
 use Payum\Core\GatewayAwareTrait;
 use Payum\Core\Reply\HttpRedirect;
 use Payum\Core\Request\Capture;
-use Payum\Core\Security\GenericTokenFactoryAwareInterface;
-use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Core\Security\TokenInterface;
 
-final class CaptureAction implements ActionInterface, ApiAwareInterface, GenericTokenFactoryAwareInterface, GatewayAwareInterface
+final class CaptureAction implements ActionInterface, ApiAwareInterface, GatewayAwareInterface
 {
     use GatewayAwareTrait;
     use ApiAwareTrait;
-
-    /** @var GenericTokenFactoryInterface|null */
-    private $tokenFactory;
-
-    public function setGenericTokenFactory(GenericTokenFactoryInterface $genericTokenFactory = null): void
-    {
-        $this->tokenFactory = $genericTokenFactory;
-    }
 
     /**
      * {@inheritdoc}
@@ -58,16 +47,12 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
         /** @var TokenInterface $token */
         $token = $request->getToken();
 
-        if (null === $this->tokenFactory) {
-            throw new RuntimeException();
-        }
-
         $details['merchant'] = [
             'redirectConfirmUrl' => $token->getTargetUrl(),
             'redirectCancelUrl' => $token->getTargetUrl() . '?&' . http_build_query(['status' => QuadPayApiClientInterface::STATUS_ABANDONED]),
         ];
 
-        $order = $this->quadpayApiClient->createOrder($details->getArrayCopy());
+        $order = $this->quadPayApiClient->createOrder($details->getArrayCopy());
 
         $details['orderToken'] = $order['token'];
         $details['orderStatus'] = QuadPayApiClientInterface::STATUS_CREATED;

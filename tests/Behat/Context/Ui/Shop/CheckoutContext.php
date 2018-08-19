@@ -27,7 +27,7 @@ final class CheckoutContext implements Context
     private $orderDetails;
 
     /** @var QuadPayApiMocker */
-    private $quadpayApiMocker;
+    private $quadPayApiMocker;
 
     /** @var PaymentPageInterface */
     private $paymentPage;
@@ -40,7 +40,7 @@ final class CheckoutContext implements Context
     ) {
         $this->completePage = $completePage;
         $this->orderDetails = $orderDetails;
-        $this->quadpayApiMocker = $quadPayApiMocker;
+        $this->quadPayApiMocker = $quadPayApiMocker;
         $this->paymentPage = $paymentPage;
     }
 
@@ -50,7 +50,7 @@ final class CheckoutContext implements Context
      */
     public function iConfirmMyOrderWithQuadPayPayment(): void
     {
-        $this->quadpayApiMocker->mockApiCreatePayment(function () {
+        $this->quadPayApiMocker->mockApiCreatePayment(function () {
             $this->completePage->confirmOrder();
         });
     }
@@ -60,7 +60,7 @@ final class CheckoutContext implements Context
      */
     public function iSignInToQuadPayAndPaySuccessfully(): void
     {
-        $this->quadpayApiMocker->mockApiSuccessfulPayment(function () {
+        $this->quadPayApiMocker->mockApiSuccessfulPayment(function () {
             $this->paymentPage->capture();
         });
     }
@@ -71,7 +71,7 @@ final class CheckoutContext implements Context
      */
     public function iCancelMyQuadPayPayment(): void
     {
-        $this->quadpayApiMocker->mockApiCancelledPayment(function () {
+        $this->quadPayApiMocker->mockApiCancelledPayment(function () {
             $this->paymentPage->capture();
         });
     }
@@ -81,7 +81,7 @@ final class CheckoutContext implements Context
      */
     public function iTryToPayAgainQuadPayPayment(): void
     {
-        $this->quadpayApiMocker->mockApiCreatePayment(function () {
+        $this->quadPayApiMocker->mockApiCreatePayment(function () {
             $this->orderDetails->pay();
         });
     }
