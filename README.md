@@ -1,3 +1,12 @@
+## Overview
+
+This plugin allows you to integrate QuadPay payment with Sylius platform app.
+
+## Support
+
+We work on amazing eCommerce projects on top of Sylius and Pimcore. Need some help or additional resources for a project?
+Write us an email on mikolaj.krol@bitbag.pl or visit [our website](https://bitbag.shop/)! :rocket:
+
 ## Installation
 
 1. Require plugin with composer:
