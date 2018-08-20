@@ -1,5 +1,5 @@
 <h1 align="center">
-    <a href="http://bitbag.shop" target="_blank">
+    <a href="http://bitbag.shop" target="_blank" style="width: 35%;">
         <img src="doc/logo.png" />
     </a>
     <br />
