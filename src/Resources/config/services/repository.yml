@@ -1,0 +1,8 @@
+services:
+    bitbag_sylius_quadpay_plugin.rapository.payment_method:
+        class: BitBag\SyliusQuadPayPlugin\Repository\PaymentMethodRepository
+        parent: "sylius.repository.payment_method"
+
+    bitbag_sylius_quadpay_plugin.rapository.payment:
+        class: BitBag\SyliusQuadPayPlugin\Repository\PaymentRepository
+        parent: "sylius.repository.payment"

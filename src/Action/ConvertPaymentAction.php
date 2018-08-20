@@ -124,7 +124,7 @@ final class ConvertPaymentAction implements ActionInterface, GatewayAwareInterfa
             $product = $orderItem->getProduct();
 
             $items[] = [
-                'description' => $product->getDescription(),
+                'description' => $product->getShortDescription(),
                 'name' => $product->getName(),
                 'sku' => $product->getCode(),
                 'quantity' => $orderItem->getQuantity(),

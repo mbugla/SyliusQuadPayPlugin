@@ -65,7 +65,7 @@ final class ConvertPaymentActionSpec extends ObjectBehavior
         $address->getLastName()->willReturn('test');
         $address->getFirstName()->willReturn('test');
         $address->getProvinceCode()->willReturn(null);
-        $product->getDescription()->willReturn('description');
+        $product->getShortDescription()->willReturn('description');
         $product->getName()->willReturn('name');
         $product->getCode()->willReturn('code');
         $orderItem->getProduct()->willReturn($product);

@@ -1,0 +1,63 @@
+.qp-container {
+    margin: -20px 0 40px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.qp-descrip {
+    margin-bottom: 4px;
+}
+
+.qp-descrip__price {
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+.qp-quadpay {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    position: relative;
+}
+
+.qp-quadpay__logo {
+    width: 90px;
+    margin: .15em 8px 0 6px;
+    position: relative;
+    bottom: -1px;
+}
+
+.qp-quadpay__learn:hover {
+    text-decoration: underline;
+}
+
+.qp-quadpay--link {
+    cursor: pointer;
+}
+
+.qp--nowrap {
+    white-space: nowrap;
+}

@@ -1,83 +1,104 @@
-<p align="center">
-    <a href="https://sylius.com" target="_blank">
-        <img src="https://demo.sylius.com/assets/shop/img/logo.png" />
-    </a>
-</p>
-
-<h1 align="center">Plugin Skeleton</h1>
-
-<p align="center">Skeleton for starting Sylius plugins.</p>
-
 ## Installation
 
-1. Run `composer create-project sylius/plugin-skeleton ProjectName`.
-
-2. From the plugin skeleton root directory, run the following commands:
+1. Require plugin with composer:
 
     ```bash
-    $ (cd tests/Application && yarn install)
-    $ (cd tests/Application && yarn run gulp)
-    $ (cd tests/Application && bin/console assets:install web -e test)
-    
-    $ (cd tests/Application && bin/console doctrine:database:create -e test)
-    $ (cd tests/Application && bin/console doctrine:schema:create -e test)
+    composer require bitbag/quadpay-plugin
     ```
 
-## Usage
+2. Import configuration:
 
-### Running plugin tests
+    ```yaml
+    imports:
+        - { resource: "@BitBagSyliusQuadPayPlugin/Resources/config/config.yml" }
+    ```
 
-  - PHPUnit
+3. Add parameters to `config.yml`:
+
+    ```yaml
+    parameters:
+        sylius.form.type.checkout_select_payment.validation_groups: ['sylius', 'checkout_select_payment']
+    ```
+
+4. Add plugin class to your `AppKernel`:
+
+    ```php
+    $bundles = [
+        new \BitBag\SyliusQuadPayPlugin\BitBagSyliusQuadPayPlugin(),
+    ];
+    ```
+
+5. Copy templates from `vendor/bitbag/quadpay-plugin/src/Resources/views/SyliusShopBundle/` 
+   to `app/Resources/SyliusShopBundle/views/`.
+
+6. Install assets:
 
     ```bash
-    $ bin/phpunit
+    bin/console assets:install --symlink web
     ```
 
-  - PHPSpec
+7. Clear cache:
 
     ```bash
-    $ bin/phpspec run
+    bin/console cache:clear
     ```
 
-  - Behat (non-JS scenarios)
+##Cron job
 
-    ```bash
-    $ bin/behat --tags="~@javascript"
-    ```
+Integrations should keep track of what orders have been sent to QuadPay for payment and have a scheduled job that runs every 10 minutes or so that checks the status of these orders.
 
-  - Behat (JS scenarios)
+For example:
+
+```bash
+*/10 * * * * bin/console bitbag:quadpay:update-payment-state
+```
+
+##QuadPay Widget
+
+QuadPay Widget could be rendered in your twig templates using `bitbag_cms_render_block([amount], [channel])` helper extension.
+
+For example:
+
+```twig
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('bundles/bitbagsyliusquadpayplugin/css/style.css') }}">
+{% endblock %}
+
+{{ bitbag_quadpay_render_widget(cart.total, sylius.channel) }}
+```
+
+## Required merchant configuration in QuadPay
+
+Merchant configuration must have `captureFundsOnOrderCreation` set to true.
+
+## Customization
+
+### Available services you can [decorate](https://symfony.com/doc/current/service_container/service_decoration.html) and forms you can [extend](http://symfony.com/doc/current/form/create_form_type_extension.html)
+
+Run the below command to see what Symfony services are shared with this plugin:
  
-    1. Download [Chromedriver](https://sites.google.com/a/chromium.org/chromedriver/)
-    
-    2. Run Selenium server with previously downloaded Chromedriver:
-    
-        ```bash
-        $ bin/selenium-server-standalone -Dwebdriver.chrome.driver=chromedriver
-        ```
-    3. Run test application's webserver on `localhost:8080`:
-    
-        ```bash
-        $ (cd tests/Application && bin/console server:run 127.0.0.1:8080 -d web -e test)
-        ```
-    
-    4. Run Behat:
-    
-        ```bash
-        $ bin/behat --tags="@javascript"
-        ```
+```bash
+$ bin/console debug:container bitbag_sylius_quadpay_plugin
+```
 
-### Opening Sylius with your plugin
+## Testing
 
-- Using `test` environment:
+```bash
+$ composer install
+$ cd tests/Application
+$ yarn install
+$ yarn run gulp
+$ bin/console assets:install web -e test
+$ bin/console doctrine:database:create -e test
+$ bin/console doctrine:schema:create -e test
+$ bin/console server:run 127.0.0.1:8080 -d web -e test
+$ open http://localhost:8080
+$ bin/behat
+$ bin/phpspec run
+```
 
-    ```bash
-    $ (cd tests/Application && bin/console sylius:fixtures:load -e test)
-    $ (cd tests/Application && bin/console server:run -d web -e test)
-    ```
-    
-- Using `dev` environment:
+## Contribution
 
-    ```bash
-    $ (cd tests/Application && bin/console sylius:fixtures:load -e dev)
-    $ (cd tests/Application && bin/console server:run -d web -e dev)
-    ```
+Learn more about our contribution workflow on http://docs.sylius.org/en/latest/contributing/.
