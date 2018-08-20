@@ -43,7 +43,7 @@
     bin/console cache:clear
     ```
 
-##Cron job
+## Cron job
 
 Integrations should keep track of what orders have been sent to QuadPay for payment and have a scheduled job that runs every 10 minutes or so that checks the status of these orders.
 
@@ -53,7 +53,7 @@ For example:
 */10 * * * * bin/console bitbag:quadpay:update-payment-state
 ```
 
-##QuadPay Widget
+## QuadPay Widget
 
 QuadPay Widget could be rendered in your twig templates using `bitbag_cms_render_block([amount], [channel])` helper extension.
 
