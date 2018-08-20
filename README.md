@@ -52,6 +52,10 @@ Write us an email on mikolaj.krol@bitbag.pl or visit [our website](https://bitba
     bin/console cache:clear
     ```
 
+## Required merchant configuration in QuadPay
+
+Merchant configuration must have `captureFundsOnOrderCreation` set to true.
+
 ## Cron job
 
 Integrations should keep track of what orders have been sent to QuadPay for payment and have a scheduled job that runs every 10 minutes or so that checks the status of these orders.
@@ -77,10 +81,6 @@ For example:
 
 {{ bitbag_quadpay_render_widget(cart.total, sylius.channel) }}
 ```
-
-## Required merchant configuration in QuadPay
-
-Merchant configuration must have `captureFundsOnOrderCreation` set to true.
 
 ## Customization
 
