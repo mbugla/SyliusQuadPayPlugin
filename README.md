@@ -1,3 +1,25 @@
+<h1 align="center">
+    <a href="http://bitbag.shop" target="_blank">
+        <img src="doc/logo.png" />
+    </a>
+    <br />
+    <a href="https://packagist.org/packages/bitbag/quadpay-plugin" title="License" target="_blank">
+        <img src="https://img.shields.io/packagist/l/bitbag/quadpay-plugin.svg" />
+    </a>
+    <a href="https://packagist.org/packages/bitbag/quadpay-plugin" title="Version" target="_blank">
+        <img src="https://img.shields.io/packagist/v/bitbag/quadpay-plugin.svg" />
+    </a>
+    <a href="http://travis-ci.org/BitBagCommerce/SyliusQuadPayPlugin" title="Build status" target="_blank">
+        <img src="https://img.shields.io/travis/BitBagCommerce/SyliusQuadPayPlugin/master.svg" />
+    </a>
+    <a href="https://scrutinizer-ci.com/g/BitBagCommerce/SyliusQuadPayPlugin/" title="Scrutinizer" target="_blank">
+        <img src="https://img.shields.io/scrutinizer/g/BitBagCommerce/SyliusQuadPayPlugin.svg" />
+    </a>
+    <a href="https://packagist.org/packages/bitbag/quadpay-plugin" title="Total Downloads" target="_blank">
+        <img src="https://poser.pugx.org/bitbag/quadpay-plugin/downloads" />
+    </a>
+</h1>
+
 ## Overview
 
 This plugin allows you to integrate QuadPay payment with Sylius platform app.
@@ -68,7 +90,7 @@ For example:
 
 ## QuadPay Widget
 
-QuadPay Widget could be rendered in your twig templates using `bitbag_cms_render_block([amount], [channel])` helper extension.
+QuadPay Widget could be rendered in your twig templates using `bitbag_quadpay_render_widget([amount], [channel])` helper extension.
 
 For example:
 
