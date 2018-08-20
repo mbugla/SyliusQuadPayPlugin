@@ -29,6 +29,11 @@ This plugin allows you to integrate QuadPay payment with Sylius platform app.
 We work on amazing eCommerce projects on top of Sylius and Pimcore. Need some help or additional resources for a project?
 Write us an email on mikolaj.krol@bitbag.pl or visit [our website](https://bitbag.shop/)! :rocket:
 
+## Demo
+
+We created a demo app with some useful use-cases of the plugin! Visit [demo.bitbag.shop](https://demo.bitbag.shop) to take a look at it. 
+The admin can be accessed under [demo.bitbag.shop/admin](https://demo.bitbag.shop/admin) link and `sylius: sylius` credentials.
+
 ## Installation
 
 1. Require plugin with composer:
@@ -95,11 +100,7 @@ QuadPay Widget could be rendered in your twig templates using `bitbag_quadpay_re
 For example:
 
 ```twig
-{% block stylesheets %}
-    {{ parent() }}
-
-    <link rel="stylesheet" href="{{ asset('bundles/bitbagsyliusquadpayplugin/css/style.css') }}">
-{% endblock %}
+<link rel="stylesheet" href="{{ asset('bundles/bitbagsyliusquadpayplugin/css/style.css') }}">
 
 {{ bitbag_quadpay_render_widget(cart.total, sylius.channel) }}
 ```
