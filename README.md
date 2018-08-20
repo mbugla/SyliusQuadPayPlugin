@@ -1,6 +1,6 @@
 <h1 align="center">
-    <a href="http://bitbag.shop" target="_blank" style="width: 35% !important;">
-        <img src="doc/logo.png" />
+    <a href="http://bitbag.shop" target="_blank">
+        <img src="doc/logo.jpeg" />
     </a>
     <br />
     <a href="https://packagist.org/packages/bitbag/quadpay-plugin" title="License" target="_blank">
