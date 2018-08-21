@@ -18,5 +18,5 @@ use Sylius\Component\Core\Repository\PaymentMethodRepositoryInterface as BasePay
 
 interface PaymentMethodRepositoryInterface extends BasePaymentMethodRepositoryInterface
 {
-    public function findOneByGatewayFactoryNameAndChannel(string $gatewayFactoryName, ChannelInterface $channel): PaymentMethodInterface;
+    public function findOneByGatewayFactoryNameAndChannel(string $gatewayFactoryName, ChannelInterface $channel): ?PaymentMethodInterface;
 }
