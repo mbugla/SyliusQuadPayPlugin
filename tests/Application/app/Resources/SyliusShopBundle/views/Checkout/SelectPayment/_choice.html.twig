@@ -1,0 +1,25 @@
+{% set qudPayFactoryName = constant('BitBag\\SyliusQuadPayPlugin\\QuadPayGatewayFactory::FACTORY_NAME') %}
+
+{% set isQuadPayMethod = method.gatewayConfig.factoryName is defined and qudPayFactoryName == method.gatewayConfig.factoryName %}
+
+<div class="item {{ isQuadPayMethod ? 'quadpay-method' : '' }}">
+    <div class="field">
+        <div class="ui radio checkbox">
+            {{ form_widget(form) }}
+        </div>
+    </div>
+    <div class="content">
+        {% if isQuadPayMethod %}
+            <a class="header">
+                <img src="{{ asset('bundles/bitbagsyliusquadpayplugin/img/quadpay_4interestfree_lc@2x.png') }}">
+            </a>
+        {% else %}
+            <a class="header">{{ form_label(form) }}</a>
+            {% if method.description is not null %}
+                <div class="description">
+                    <p>{{ method.description }}</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>

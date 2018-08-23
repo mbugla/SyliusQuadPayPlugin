@@ -12,10 +12,15 @@
                         return;
                     }
 
+                    Number.prototype.format = function(n, x) {
+                        let re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+                        return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+                    };
+
                     let minAmount = $('#qp-descrip-min-amount').data('min-amount') / 100;
                     let maxAmount = $('#qp-descrip-max-amount').data('max-amount') / 100;
 
-                    $('#qp-descrip__price').text($('#product-price').text());
+                    $('#qp-descrip__price span.qp-descrip__price').text('$' + (price / 4).format(2));
 
                     if (minAmount > price) {
                         $('#qp-descrip-min-amount').show();
@@ -32,3 +37,13 @@
         }
     });
 })( jQuery );
+
+(function($) {
+    $(document).ready(function () {
+        $('#product-price').updateQuadPayWidget();
+
+        $('a.header').click(function () {
+            $(this).closest('.item').find('input[type="radio"]').prop("checked", true);
+        });
+    });
+})(jQuery);

@@ -24,6 +24,7 @@ final class PaymentMethodRepository extends BasePaymentMethodRepository implemen
             ->innerJoin('o.gatewayConfig', 'gatewayConfig')
             ->where('gatewayConfig.factoryName = :gatewayFactoryName')
             ->andWhere(':channel MEMBER OF o.channels')
+            ->andWhere('o.enabled = true')
             ->addOrderBy('o.position')
             ->setParameter('gatewayFactoryName', $gatewayFactoryName)
             ->setParameter('channel', $channel)

@@ -1,11 +1,5 @@
 {% extends '@SyliusShop/layout.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-
-    <link rel="stylesheet" href="{{ asset('bundles/bitbagsyliusquadpayplugin/css/style.css') }}">
-{% endblock %}
-
 {% block content %}
 {% include '@SyliusShop/Product/Show/_breadcrumb.html.twig' %}
 <div class="ui hidden divider"></div>
@@ -70,11 +64,7 @@
 {% block javascripts %}
     {{ parent() }}
 
-    <script src="{{ asset('bundles/bitbagsyliusquadpayplugin/js/bitbag-update-quadpay-widget.js') }}"></script>
-
     <script type="text/javascript">
-        $('#product-price').updateQuadPayWidget();
-
         lightbox.option({
             'albumLabel': '{{ 'sylius.lightbox.image_album_label'|trans|escape('js') }}'
         });

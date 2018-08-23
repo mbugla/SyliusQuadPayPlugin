@@ -1,5 +1,4 @@
 .qp-container {
-    margin: -20px 0 40px 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -16,6 +15,7 @@
     -ms-flex-align: start;
     align-items: flex-start;
     width: 100%;
+    margin: 0 0 10px 0;
 }
 
 .qp-descrip {
@@ -60,4 +60,12 @@
 
 .qp--nowrap {
     white-space: nowrap;
+}
+
+.quadpay-method.item .header img {
+    width: 100%;
+}
+
+.quadpay-method.item .radio.checkbox {
+    margin-top: 11px;
 }
