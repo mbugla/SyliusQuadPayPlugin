@@ -1,0 +1,2 @@
+imports:
+    - { resource: "checkout/select_payment.yml" }

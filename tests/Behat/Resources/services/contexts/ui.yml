@@ -13,6 +13,14 @@ services:
             - "@sylius.behat.page.shop.order.show"
             - "@bitbag_sylius_quadpay_plugin.behat.quadpay_api_mocker"
             - "@bitbag_sylius_quadpay_plugin.page.external.payment"
+            - "@sylius.behat.page.shop.checkout.address"
+            - "@bitbag_sylius_quadpay_plugin.page.shop.checkout.select_payment"
+            - "@sylius.behat.page.shop.checkout.select_shipping"
+            - "@sylius.behat.page.shop.account.register"
+            - "@sylius.behat.current_page_resolver"
+            - "@sylius.behat.context.ui.shop.checkout.addressing"
+            - "@sylius.behat.context.ui.shop.checkout.shipping"
+            - "@bitbag_sylius_quadpay_plugin.behat.context.ui.shop.checkout.payment"
         tags:
             - { name: fob.context_service }
 
@@ -21,5 +29,13 @@ services:
         arguments:
             - "@bitbag_sylius_quadpay_plugin.behat.quadpay_api_mocker"
             - "@sylius.behat.context.ui.admin.managing_orders"
+        tags:
+            - { name: fob.context_service }
+
+    bitbag_sylius_quadpay_plugin.behat.context.ui.shop.checkout.payment:
+        class: Tests\BitBag\SyliusQuadPayPlugin\Behat\Context\Ui\Shop\CheckoutPaymentContext
+        arguments:
+            - "@bitbag_sylius_quadpay_plugin.page.shop.checkout.select_payment"
+            - "@sylius.behat.page.shop.checkout.complete"
         tags:
             - { name: fob.context_service }

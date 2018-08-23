@@ -1,0 +1,5 @@
+services:
+    bitbag_sylius_quadpay_plugin.page.shop.checkout.select_payment:
+         class: Tests\BitBag\SyliusQuadPayPlugin\Behat\Page\Checkout\SelectPaymentPage
+         parent: "sylius.behat.page.shop.checkout.select_payment"
+         public: false
