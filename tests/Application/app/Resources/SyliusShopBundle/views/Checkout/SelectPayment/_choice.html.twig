@@ -13,6 +13,9 @@
             <a class="header">
                 <img src="{{ asset('bundles/bitbagsyliusquadpayplugin/img/quadpay_4interestfree_lc@2x.png') }}">
             </a>
+            <div>
+                <p>{{ method.description }}</p>
+            </div>
         {% else %}
             <a class="header">{{ form_label(form) }}</a>
             {% if method.description is not null %}
