@@ -24,6 +24,10 @@
 
 This plugin allows you to integrate QuadPay payment with Sylius platform app.
 
+## For Merchants
+
+Are you using Sylius with QuadPay? Ask for a special pricing [here](https://www.quadpay.com/merchants/)!
+
 ## Support
 
 We work on amazing eCommerce projects on top of Sylius and Pimcore. Need some help or additional resources for a project?
