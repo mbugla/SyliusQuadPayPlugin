@@ -1,19 +1,17 @@
 services:
+    _defaults: { public: true }
+
     bitbag_sylius_quadpay_plugin.behat.context.setup.quadpay:
         class: Tests\BitBag\SyliusQuadPayPlugin\Behat\Context\Setup\QuadPayContext
         arguments:
             - "@sylius.behat.shared_storage"
-            - "@__symfony__.sylius.repository.payment_method"
-            - "@__symfony__.sylius.fixture.example_factory.payment_method"
-            - "@__symfony__.sylius.factory.payment_method_translation"
-            - "@__symfony__.sylius.manager.payment_method"
-        tags:
-            - { name: fob.context_service }
+            - "@sylius.repository.payment_method"
+            - "@sylius.fixture.example_factory.payment_method"
+            - "@sylius.factory.payment_method_translation"
+            - "@sylius.manager.payment_method"
 
     bitbag_sylius_quadpay_plugin.context.setup.order:
         class: Tests\BitBag\SyliusQuadPayPlugin\Behat\Context\Setup\OrderContext
         arguments:
-            - "@__symfony__.doctrine.orm.default_entity_manager"
-            - "@__symfony__.sm.factory"
-        tags:
-            - { name: fob.context_service }
+            - "@doctrine.orm.default_entity_manager"
+            - "@sm.factory"
