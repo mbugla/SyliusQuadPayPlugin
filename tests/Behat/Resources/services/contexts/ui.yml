@@ -1,10 +1,10 @@
 services:
+    _defaults: { public: true }
+
     bitbag_sylius_quadpay_plugin.behat.context.ui.admin.managing_payment_method_quadpay:
         class: Tests\BitBag\SyliusQuadPayPlugin\Behat\Context\Ui\Admin\ManagingPaymentMethodContext
         arguments:
             - "@bitbag_sylius_quadpay_plugin.page.admin.payment_method.create"
-        tags:
-            - { name: fob.context_service }
 
     bitbag_sylius_quadpay_plugin.behat.context.ui.shop.checkout:
         class: Tests\BitBag\SyliusQuadPayPlugin\Behat\Context\Ui\Shop\CheckoutContext
@@ -21,21 +21,15 @@ services:
             - "@sylius.behat.context.ui.shop.checkout.addressing"
             - "@sylius.behat.context.ui.shop.checkout.shipping"
             - "@bitbag_sylius_quadpay_plugin.behat.context.ui.shop.checkout.payment"
-        tags:
-            - { name: fob.context_service }
 
     bitbag_sylius_quadpay_plugin.behat.context.ui.admin.refund:
         class: Tests\BitBag\SyliusQuadPayPlugin\Behat\Context\Ui\Admin\RefundContext
         arguments:
             - "@bitbag_sylius_quadpay_plugin.behat.quadpay_api_mocker"
             - "@sylius.behat.context.ui.admin.managing_orders"
-        tags:
-            - { name: fob.context_service }
 
     bitbag_sylius_quadpay_plugin.behat.context.ui.shop.checkout.payment:
         class: Tests\BitBag\SyliusQuadPayPlugin\Behat\Context\Ui\Shop\CheckoutPaymentContext
         arguments:
             - "@bitbag_sylius_quadpay_plugin.page.shop.checkout.select_payment"
             - "@sylius.behat.page.shop.checkout.complete"
-        tags:
-            - { name: fob.context_service }
